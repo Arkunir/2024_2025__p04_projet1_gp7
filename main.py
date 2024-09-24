@@ -4,16 +4,17 @@ import time
 import os
 
 # Définition des constantes
-WIDTH, HEIGHT = 80, 20
-SPEED = 1
+WIDTH, HEIGHT = 20, 20
+SPEED = 0.5
 BLOCK_SIZE = 1
 
 # Création du serpent
-snake = [(20, 10), (22, 10), (24, 10)]
+snake = [(10, 10), (11, 10), (12, 10)]
 direction = 'RIGHT'
 
 # Création de la nourriture
-food = (40, 15)
+food = (random.randint(0, WIDTH - BLOCK_SIZE) // BLOCK_SIZE * BLOCK_SIZE,
+        random.randint(0, HEIGHT - BLOCK_SIZE) // BLOCK_SIZE * BLOCK_SIZE)
 
 # Boucle principale
 while True:
@@ -33,17 +34,6 @@ while True:
 
     # Attendre un peu pour contrôler la vitesse
     time.sleep(SPEED)
-
-    # Lire les événements clavier
-    direction_input = input("Direction (W/A/S/D) ? ")
-    if direction_input.upper() == 'W' and direction != 'DOWN':
-        direction = 'UP'
-    elif direction_input.upper() == 'S' and direction != 'UP':
-        direction = 'DOWN'
-    elif direction_input.upper() == 'A' and direction != 'RIGHT':
-        direction = 'LEFT'
-    elif direction_input.upper() == 'D' and direction != 'LEFT':
-        direction = 'RIGHT'
 
     # Déplacement du serpent
     head = snake[-1]
@@ -70,3 +60,9 @@ while True:
             snake[-1][1] < 0 or snake[-1][1] >= HEIGHT):
         print("Game Over")
         sys.exit()
+
+    # Changement de direction aléatoire
+    if random.random() < 0.1:
+        directions = ['UP', 'DOWN', 'LEFT', 'RIGHT']
+        directions.remove(direction)
+        direction = random.choice(directions)ssww
