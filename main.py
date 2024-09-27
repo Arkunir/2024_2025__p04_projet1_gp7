@@ -1,4 +1,5 @@
 def binary_to_decimal(binary):
+    binary = str(binary)  # Ensure binary is a string
     decimal = 0
     for i, bit in enumerate(reversed(binary)):
         if bit == '1':
@@ -44,6 +45,6 @@ def hexadecimal_to_binary(hexadecimal):
 #binary ou hexadecimal ou decimal = 'nombre'
 #basevoulue en résultat = base départ_to_base voulue(base de départ)
 #print(base voulue)
-binary = '1'
-hexadecimal = binary_to_hexadecimal(binary)
-print(hexadecimal)
+binary = '2111'
+decimal = binary_to_decimal(binary)
+print(decimal)
