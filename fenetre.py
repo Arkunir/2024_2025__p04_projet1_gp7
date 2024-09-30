@@ -1,4 +1,4 @@
-import tkinter as tk
+import tkinter as tkE
 
 def convertir_base():
     valeur_entree = entree_valeur.get()
