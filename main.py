@@ -23,6 +23,8 @@ def decimal_to_binary(decimal):
     return binary
 
 def decimal_to_hexadecimal(decimal):
+    if decimal is None:
+        return None
     decimal = int(decimal)
     hexadecimal = ''
     while decimal > 0:
@@ -45,15 +47,19 @@ def hexadecimal_to_decimal(hexadecimal):
 
 def binary_to_hexadecimal(binary):
     decimal = binary_to_decimal(binary)
+    if decimal is None:
+        return None
     return decimal_to_hexadecimal(decimal)
 
 def hexadecimal_to_binary(hexadecimal):
     decimal = hexadecimal_to_decimal(hexadecimal)
+    if decimal is None:
+        return None
     return decimal_to_binary(decimal)
 
 #binary ou hexadecimal ou decimal = 'nombre'
 #basevoulue en résultat = base départ_to_base voulue(base de départ)
 #print(base voulue)
-binary = '2111'
-hexadecimal = binary_to_hexadecimal(binary)
-print(hexadecimal)
+binary = '1211'
+decimal = binary_to_decimal(binary)
+print(decimal)
