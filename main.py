@@ -1,9 +1,18 @@
 def binary_to_decimal(binary):
     binary = str(binary)  # Ensure binary is a string
     decimal = 0
-    for i, bit in enumerate(reversed(binary)):
+    
+    # Vérification des chiffres non valides
+    for bit in binary:
+        if bit not in ['0', '1']:
+            print("Erreur : le chiffre '{}' n'est pas un chiffre binaire valide.".format(bit))
+            return None
+    
+    # Conversion binaire-décimale
+    for i, bit in enumerate(binary):
         if bit == '1':
-            decimal += 2 ** i
+            decimal += 2 ** (len(binary) - 1 - i)
+    
     return decimal
 
 def decimal_to_binary(decimal):
@@ -46,5 +55,5 @@ def hexadecimal_to_binary(hexadecimal):
 #basevoulue en résultat = base départ_to_base voulue(base de départ)
 #print(base voulue)
 binary = '2111'
-decimal = binary_to_decimal(binary)
-print(decimal)
+hexadecimal = binary_to_hexadecimal(binary)
+print(hexadecimal)
