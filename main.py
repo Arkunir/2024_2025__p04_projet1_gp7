@@ -1,10 +1,11 @@
 import tkinter as tk
 
+# Définition des fonctions de conversion
 def binaire_en_decimal(binaire):
     # Vérification des chiffres non valides
     for bit in binaire:
         if bit not in ['0', '1']:
-            return "Erreur : l'élément '{}' n'est pas un chiffre binaire valide.".format(bit)
+            return f"Erreur : l'élément '{bit}' n'est pas un chiffre binaire valide."
     
     # Conversion binaire-décimale
     decimal = 0
@@ -45,14 +46,12 @@ def hexadecimal_en_decimal(hexadecimal):
 
 def binaire_en_hexadecimal(binaire):
     decimal = binaire_en_decimal(binaire)
-    if decimal is None:
-        return None
+    if isinstance(decimal, str) and decimal.startswith("Erreur"):
+        return decimal
     return decimal_en_hexadecimal(decimal)
 
 def hexadecimal_en_binaire(hexadecimal):
     decimal = hexadecimal_en_decimal(hexadecimal)
-    if decimal is None:
-        return None
     return decimal_en_binaire(decimal)
 
 def convertir_base():
@@ -63,23 +62,37 @@ def convertir_base():
     if base_depart == "Binaire" and base_arrivee == "Décimal":
         resultat = binaire_en_decimal(valeur_entree)
     elif base_depart == "Décimal" and base_arrivee == "Binaire":
-        resultat = decimal_en_binaire(int(valeur_entree))
+        try:
+            resultat = decimal_en_binaire(int(valeur_entree))
+        except ValueError:
+            resultat = "Erreur : la valeur entrée n'est pas un nombre décimal valide."
     elif base_depart == "Décimal" and base_arrivee == "Hexadécimal":
-        resultat = decimal_en_hexadecimal(int(valeur_entree))
+        try:
+            resultat = decimal_en_hexadecimal(int(valeur_entree))
+        except ValueError:
+            resultat = "Erreur : la valeur entrée n'est pas un nombre décimal valide."
     elif base_depart == "Hexadécimal" and base_arrivee == "Décimal":
-        resultat = hexadecimal_en_decimal(valeur_entree)
+        try:
+            resultat = hexadecimal_en_decimal(valeur_entree)
+        except ValueError:
+            resultat = "Erreur : la valeur entrée n'est pas un nombre hexadécimal valide."
     elif base_depart == "Binaire" and base_arrivee == "Hexadécimal":
         resultat = binaire_en_hexadecimal(valeur_entree)
     elif base_depart == "Hexadécimal" and base_arrivee == "Binaire":
-        resultat = hexadecimal_en_binaire(valeur_entree)
+        try:
+            resultat = hexadecimal_en_binaire(valeur_entree)
+        except ValueError:
+            resultat = "Erreur : la valeur entrée n'est pas un nombre hexadécimal valide."
     else:
         resultat = "Conversion de base non valide"
 
     etiquette_resultat.config(text="Résultat : " + str(resultat))
 
+# Création de la fenêtre
 fenetre = tk.Tk()
 fenetre.title("Convertisseur de base")
 
+# Création des éléments de la fenêtre
 etiquette_valeur = tk.Label(fenetre, text="Entrez la valeur :")
 etiquette_valeur.pack()
 
