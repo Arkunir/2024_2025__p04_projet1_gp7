@@ -4,7 +4,7 @@ def binaire_en_decimal(binaire):
     # Vérification des chiffres non valides
     for bit in binaire:
         if bit not in ['0', '1']:
-            return "Erreur : le chiffre '{}' n'est pas un chiffre binaire valide.".format(bit)
+            return "Erreur : l'élément '{}' n'est pas un chiffre binaire valide.".format(bit)
     
     # Conversion binaire-décimale
     decimal = 0
