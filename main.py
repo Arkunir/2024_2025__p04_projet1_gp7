@@ -1,42 +1,40 @@
-def binary_to_decimal(binary):
-    binary = str(binary)  # Ensure binary is a string
-    decimal = 0
-    
+import tkinter as tk
+
+def binaire_en_decimal(binaire):
     # Vérification des chiffres non valides
-    for bit in binary:
+    for bit in binaire:
         if bit not in ['0', '1']:
-            print("Erreur : le chiffre '{}' n'est pas un chiffre binaire valide.".format(bit))
-            return None
+            return "Erreur : le chiffre '{}' n'est pas un chiffre binaire valide.".format(bit)
     
     # Conversion binaire-décimale
-    for i, bit in enumerate(binary):
+    decimal = 0
+    for i, bit in enumerate(binaire):
         if bit == '1':
-            decimal += 2 ** (len(binary) - 1 - i)
-    
+            decimal += 2 ** (len(binaire) - 1 - i)
     return decimal
 
-def decimal_to_binary(decimal):
-    binary = ''
+def decimal_en_binaire(decimal):
+    binaire = ''
     while decimal > 0:
-        binary = str(decimal % 2) + binary
+        binaire = str(decimal % 2) + binaire
         decimal //= 2
-    return binary
+    return binaire
 
-def decimal_to_hexadecimal(decimal):
+def decimal_en_hexadecimal(decimal):
     if decimal is None:
         return None
     decimal = int(decimal)
     hexadecimal = ''
     while decimal > 0:
-        remainder = decimal % 16
-        if remainder < 10:
-            hexadecimal = str(remainder) + hexadecimal
+        reste = decimal % 16
+        if reste < 10:
+            hexadecimal = str(reste) + hexadecimal
         else:
-            hexadecimal = chr(ord('A') + remainder - 10) + hexadecimal
+            hexadecimal = chr(ord('A') + reste - 10) + hexadecimal
         decimal //= 16
     return hexadecimal
 
-def hexadecimal_to_decimal(hexadecimal):
+def hexadecimal_en_decimal(hexadecimal):
     decimal = 0
     for i, char in enumerate(reversed(hexadecimal)):
         if char.isdigit():
@@ -45,21 +43,69 @@ def hexadecimal_to_decimal(hexadecimal):
             decimal += (ord(char) - ord('A') + 10) * (16 ** i)
     return decimal
 
-def binary_to_hexadecimal(binary):
-    decimal = binary_to_decimal(binary)
+def binaire_en_hexadecimal(binaire):
+    decimal = binaire_en_decimal(binaire)
     if decimal is None:
         return None
-    return decimal_to_hexadecimal(decimal)
+    return decimal_en_hexadecimal(decimal)
 
-def hexadecimal_to_binary(hexadecimal):
-    decimal = hexadecimal_to_decimal(hexadecimal)
+def hexadecimal_en_binaire(hexadecimal):
+    decimal = hexadecimal_en_decimal(hexadecimal)
     if decimal is None:
         return None
-    return decimal_to_binary(decimal)
+    return decimal_en_binaire(decimal)
 
-#binary ou hexadecimal ou decimal = 'nombre'
-#basevoulue en résultat = base départ_to_base voulue(base de départ)
-#print(base voulue)
-binary = '1211'
-decimal = binary_to_decimal(binary)
-print(decimal)
+def convertir_base():
+    valeur_entree = entree_valeur.get()
+    base_depart = base_depart_var.get()
+    base_arrivee = base_arrivee_var.get()
+
+    if base_depart == "Binaire" and base_arrivee == "Décimal":
+        resultat = binaire_en_decimal(valeur_entree)
+    elif base_depart == "Décimal" and base_arrivee == "Binaire":
+        resultat = decimal_en_binaire(int(valeur_entree))
+    elif base_depart == "Décimal" and base_arrivee == "Hexadécimal":
+        resultat = decimal_en_hexadecimal(int(valeur_entree))
+    elif base_depart == "Hexadécimal" and base_arrivee == "Décimal":
+        resultat = hexadecimal_en_decimal(valeur_entree)
+    elif base_depart == "Binaire" and base_arrivee == "Hexadécimal":
+        resultat = binaire_en_hexadecimal(valeur_entree)
+    elif base_depart == "Hexadécimal" and base_arrivee == "Binaire":
+        resultat = hexadecimal_en_binaire(valeur_entree)
+    else:
+        resultat = "Conversion de base non valide"
+
+    etiquette_resultat.config(text="Résultat : " + str(resultat))
+
+fenetre = tk.Tk()
+fenetre.title("Convertisseur de base")
+
+etiquette_valeur = tk.Label(fenetre, text="Entrez la valeur :")
+etiquette_valeur.pack()
+
+entree_valeur = tk.Entry(fenetre)
+entree_valeur.pack()
+
+etiquette_base_depart = tk.Label(fenetre, text="De :")
+etiquette_base_depart.pack()
+
+base_depart_var = tk.StringVar()
+base_depart_var.set("Binaire")
+menu_base_depart = tk.OptionMenu(fenetre, base_depart_var, "Binaire", "Décimal", "Hexadécimal")
+menu_base_depart.pack()
+
+etiquette_base_arrivee = tk.Label(fenetre, text="Vers :")
+etiquette_base_arrivee.pack()
+
+base_arrivee_var = tk.StringVar()
+base_arrivee_var.set("Décimal")
+menu_base_arrivee = tk.OptionMenu(fenetre, base_arrivee_var, "Binaire", "Décimal", "Hexadécimal")
+menu_base_arrivee.pack()
+
+bouton_convertir = tk.Button(fenetre, text="Convertir", command=convertir_base)
+bouton_convertir.pack()
+
+etiquette_resultat = tk.Label(fenetre, text="Résultat : ")
+etiquette_resultat.pack()
+
+fenetre.mainloop()
