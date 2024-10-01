@@ -35,6 +35,10 @@ def is_a_valid_number (number):
         i = i + 1
     return is_a_valid_char
 
+def is_a_valid_char (char):
+    pass
+
+
 def ask_for_the_init_number ():
     init_number = input (ask_for_the_init_number_text)
     while not (is_a_valid_number (init_number)) == True:
@@ -62,12 +66,13 @@ def bin_to_decimal("binary"):
 print (bin_to_decimal(10))
 
 
-def ... (n, d):
-    restes="" 
-    q= n//d
-    while q>0
-        reste = n % d
-        restes = reste + restes
-        n=q
-        q = n//2
-        return restes
+# def ... (n, d):
+#     restes="" 
+#     q= n//d
+#     while q>0
+#         reste = n % d
+#         restes = reste + restes
+#         n=q
+#         q = n//2
+#         return restes
+
