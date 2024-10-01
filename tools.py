@@ -24,6 +24,7 @@ dec_number_valid_chars = \
   + ["2", "3", "4", "5", "6", "7", "8", "9"]
 
 
+
 def check_char_number_validity (char):
     return char in hex_number_valid_chars
 
@@ -38,7 +39,7 @@ def is_a_valid_number (number):
 def is_a_valid_char (char):
     pass
 
-
+ss
 def ask_for_the_init_number ():
     init_number = input (ask_for_the_init_number_text)
     while not (is_a_valid_number (init_number)) == True:
