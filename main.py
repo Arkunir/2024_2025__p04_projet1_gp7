@@ -88,6 +88,37 @@ def convertir_base():
 
     etiquette_resultat.config(text="Résultat : " + str(resultat))
 
-binaire = "1110" #binaire ou decimal ou hexadecimal = "nombre"
-decimal = binaire_en_decimal(binaire) #un autre parmi les trois = baseinitiale_en_basefinale(baseinitiale)
-print(f"Le nombre en base initiale {binaire} est égal au nombre en base finale {decimal}") #print(f"Le nombre en base initiale {baseinitiale} est égal au nombre en base finale {basefinale}")
+# Création de la fenêtre
+fenetre = tk.Tk()
+fenetre.title("Convertisseur de base")
+
+# Création des éléments de la fenêtre
+etiquette_valeur = tk.Label(fenetre, text="Entrez la valeur :")
+etiquette_valeur.pack()
+
+entree_valeur = tk.Entry(fenetre)
+entree_valeur.pack()
+
+etiquette_base_depart = tk.Label(fenetre, text="De :")
+etiquette_base_depart.pack()
+
+base_depart_var = tk.StringVar()
+base_depart_var.set("Binaire")
+menu_base_depart = tk.OptionMenu(fenetre, base_depart_var, "Binaire", "Décimal", "Hexadécimal")
+menu_base_depart.pack()
+
+etiquette_base_arrivee = tk.Label(fenetre, text="Vers :")
+etiquette_base_arrivee.pack()
+
+base_arrivee_var = tk.StringVar()
+base_arrivee_var.set("Décimal")
+menu_base_arrivee = tk.OptionMenu(fenetre, base_arrivee_var, "Binaire", "Décimal", "Hexadécimal")
+menu_base_arrivee.pack()
+
+bouton_convertir = tk.Button(fenetre, text="Convertir", command=convertir_base)
+bouton_convertir.pack()
+
+etiquette_resultat = tk.Label(fenetre, text="Résultat : ")
+etiquette_resultat.pack()
+
+fenetre.mainloop()
