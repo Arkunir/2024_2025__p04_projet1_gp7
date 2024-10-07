@@ -1,13 +1,10 @@
 import tkinter as tk
 
-# Définition des fonctions de conversion
 def binaire_en_decimal(binaire):
-    # Vérification des chiffres non valides
     for bit in binaire:
         if bit not in ['0', '1']:
             return f"Erreur : l'élément '{bit}' n'est pas un chiffre binaire valide."
     
-    # Conversion binaire-décimale
     decimal = 0
     for i, bit in enumerate(binaire):
         if bit == '1':
