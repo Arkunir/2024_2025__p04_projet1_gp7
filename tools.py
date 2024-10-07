@@ -14,6 +14,8 @@ from data import *
 #     return ""
 ask_for_the_init_base_text = "Donne moi la base du nombre choisi"
 
+ask_for_the_target_base_text
+
 ask_for_the_init_number_text = "Par pitié donnes moi un nombre ? :"
 
 ask_again_for_the_init_number_text = "Mauvais nombre, redonne moi un bon ! : "
