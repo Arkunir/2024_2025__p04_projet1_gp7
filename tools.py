@@ -12,9 +12,9 @@ from data import *
 # def ask_for_the_target_base ():
 #     "" = input("saisissez la base visée")
 #     return ""
-ask_for_the_init_base_text = "Donne moi la base du nombre choisi"
+ask_for_init_base_text = "Donne moi la base du nombre choisi"
 
-ask_for_the_target_base_text
+ask_for_the_target_base_text = "Donne moi la base au quelle tu veux mettre ton nombre"
 
 ask_for_the_init_number_text = "Par pitié donnes moi un nombre ? :"
 
@@ -28,8 +28,15 @@ dec_number_valid_chars = \
 
 def ask_for_the_init_base () :
     init_base = input (ask_for_init_base_text)
+    
+
+def ask_for_the_target_base():
+    target_base = input (ask_for_the_target_base_text)
+    return 
 
 
+def hex_number_valid_chars():
+    pass
 
 def check_char_number_validity (char):
     return char in hex_number_valid_chars
