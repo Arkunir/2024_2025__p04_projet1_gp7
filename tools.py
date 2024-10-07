@@ -39,7 +39,7 @@ def is_a_valid_number (number):
 def is_a_valid_char (char):
     pass
 
-ss
+
 def ask_for_the_init_number ():
     init_number = input (ask_for_the_init_number_text)
     while not (is_a_valid_number (init_number)) == True:
@@ -56,12 +56,12 @@ def bin_dec_hex__to__bin_dec_hex (init_number, init_base, target_base):
         targetnumber = bin_to_decimal (init_number)
     
       
-def bin_to_decimal("binary"):
+def bin_to_decimal(binary):
     
     decimal = 0
-    for i, bit in enumerate(binaire):
+    for i, bit in enumerate(binary):
         if bit == '1':
-            decimal += 2 ** (len(binaire) - 1 - i)
+            decimal += 2 ** (len(binary) - 1 - i)
     return decimal
     
 print (bin_to_decimal(10))
