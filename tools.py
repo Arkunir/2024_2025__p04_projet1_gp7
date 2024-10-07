@@ -28,7 +28,7 @@ dec_number_valid_chars = \
 
 def ask_for_the_init_base () :
     init_base = input (ask_for_init_base_text)
-    
+
 
 def ask_for_the_target_base():
     target_base = input (ask_for_the_target_base_text)
@@ -88,5 +88,6 @@ print (bin_to_decimal(10))
 #         restes = reste + restes
 #         n=q
 #         q = n//2
+# 
 #         return restes
 
