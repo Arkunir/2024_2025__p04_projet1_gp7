@@ -49,6 +49,37 @@ def hexadecimal_en_binaire(hexadecimal):
     decimal = hexadecimal_en_decimal(hexadecimal)
     return decimal_en_binaire(decimal)
 
+def hexa_check(s):
+    """
+    Checks if a string is a valid hexadecimal string with only letters from 'a' to 'f'.
+
+    Args:
+        s (str): The input string to check.
+
+    Returns:
+        bool: True if the string is a valid hexadecimal string, False otherwise.
+    """
+    for char in s:
+        if char.isdigit() and int(char) > 9:
+            return False
+        elif char.lower() >= 'a' and char.lower() <= 'f':
+            continue
+        else:
+            return False
+    return True
+
+# Example usage:
+s = "1a2f"
+if hexa_check(s):
+    print("The string is a valid hexadecimal string.")
+else:
+    print("The string is not a valid hexadecimal string.")
+
+s = "1g2f"
+if hexa_check(s):
+    print("The string is a valid hexadecimal string.")
+else:
+    print("The string is not a valid hexadecimal string.")
 def convertir_base():
     valeur_entree = entree_valeur.get()
     base_depart = base_depart_var.get()
