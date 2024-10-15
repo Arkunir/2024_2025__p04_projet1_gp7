@@ -1,5 +1,3 @@
-import tkinter as tk
-
 def binaire_en_decimal(binaire):
     for bit in binaire:
         if bit not in ['0', '1']:
@@ -86,6 +84,7 @@ def convertir_base():
     etiquette_resultat.config(text="Résultat : " + str(resultat))
 
 # Création de la fenêtre
+import tkinter as tk
 fenetre = tk.Tk()
 fenetre.title("Convertisseur de base")
 
