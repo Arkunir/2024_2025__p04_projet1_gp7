@@ -19,7 +19,13 @@ def decimal_en_binaire(decimal):
         negatif = False
     
     binaire = ''
+<<<<<<< HEAD
     while decimal > 0:
+=======
+    if decimal < 0 :
+        binaire = "-" + binaire
+    while decimal != 0:
+>>>>>>> 596e41feac77e4eff4d48f779f2e32150280c09f
         binaire = str(decimal % 2) + binaire
         decimal //= 2
     if negatif:
