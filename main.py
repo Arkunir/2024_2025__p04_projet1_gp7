@@ -11,8 +11,6 @@ def binaire_en_decimal(binaire):
 
 def decimal_en_binaire(decimal):
     binaire = ''
-    if decimal < 0 :
-        binaire = "-" + binaire
     while decimal != 0:
         binaire = str(decimal % 2) + binaire
         decimal //= 2
