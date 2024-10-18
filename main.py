@@ -1,4 +1,4 @@
-def binaire_en_decimal(binaire):
+def binaire_en_decimal(binaire, negatif=False):
     for bit in binaire:
         if bit not in ['0', '1']:
             return f"Erreur : l'élément '{bit}' n'est pas un chiffre binaire valide."
@@ -7,13 +7,22 @@ def binaire_en_decimal(binaire):
     for i, bit in enumerate(binaire):
         if bit == '1':
             decimal += 2 ** (len(binaire) - 1 - i)
+    if negatif:
+        decimal = -decimal
     return decimal
 
 def decimal_en_binaire(decimal):
-    binaire = ''
+    if decimal < 0:
+        negatif = True
+        decimal = -decimal
+    else:
+        negatif = False
     while decimal != 0:
+
         binaire = str(decimal % 2) + binaire
         decimal //= 2
+    if negatif:
+        binaire = '-' + bin(int(binaire))[2:]  
     return binaire
 
 def decimal_en_hexadecimal(decimal):
@@ -49,44 +58,16 @@ def hexadecimal_en_binaire(hexadecimal):
     decimal = hexadecimal_en_decimal(hexadecimal)
     return decimal_en_binaire(decimal)
 
-def hexa_check(s):
-    """
-    Checks if a string is a valid hexadecimal string with only letters from 'a' to 'f'.
-
-    Args:
-        s (str): The input string to check.
-
-    Returns:
-        bool: True if the string is a valid hexadecimal string, False otherwise.
-    """
-    for char in s:
-        if char.isdigit() and int(char) > 9:
-            return False
-        elif char.lower() >= 'a' and char.lower() <= 'f':
-            continue
-        else:
-            return False
-    return True
-
-# Example usage:
-s = "1a2f"
-if hexa_check(s):
-    print("The string is a valid hexadecimal string.")
-else:
-    print("The string is not a valid hexadecimal string.")
-
-s = "1g2f"
-if hexa_check(s):
-    print("The string is a valid hexadecimal string.")
-else:
-    print("The string is not a valid hexadecimal string.")
 def convertir_base():
     valeur_entree = entree_valeur.get()
     base_depart = base_depart_var.get()
     base_arrivee = base_arrivee_var.get()
 
     if base_depart == "Binaire" and base_arrivee == "Décimal":
-        resultat = binaire_en_decimal(valeur_entree)
+        if valeur_entree.startswith('-'):
+            resultat = binaire_en_decimal(valeur_entree[1:], negatif=True)
+        else:
+            resultat = binaire_en_decimal(valeur_entree)
     elif base_depart == "Décimal" and base_arrivee == "Binaire":
         try:
             resultat = decimal_en_binaire(int(valeur_entree))
@@ -145,7 +126,7 @@ menu_base_arrivee.pack()
 bouton_convertir = tk.Button(fenetre, text="Convertir", command=convertir_base)
 bouton_convertir.pack()
 
-etiquette_resultat = tk.Label(fenetre, text="Résultat : ")
+etiquette_resultat = tk.Label(fenetre, text="Résultat :")
 etiquette_resultat.pack()
 
 fenetre.mainloop()
