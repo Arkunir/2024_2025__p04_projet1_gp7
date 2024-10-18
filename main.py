@@ -6,11 +6,22 @@ def binaire_vers_decimal(binaire):
         decimal += int(chiffre) * (2 ** i)
     return decimal
 
+<<<<<<< HEAD
 def decimal_vers_binaire(decimal):
     if decimal == 0:
         return "0"
     binaire = ""
     while decimal > 0:
+=======
+def decimal_en_binaire(decimal):
+    if decimal < 0:
+        negatif = True
+        decimal = -decimal
+    else:
+        negatif = False
+    while decimal != 0:
+
+>>>>>>> cff0dae7f8b0fca3e83dc5d02122b552866c3541
         binaire = str(decimal % 2) + binaire
         decimal //= 2
     return binaire
