@@ -1,4 +1,3 @@
-from data import *
 import tkinter as tk
 
 def convertir_binaire_decimal(binaire):
@@ -90,5 +89,38 @@ def convertir_base():
         resultat = "Erreur : conversion non prise en charge"
 
     etiquette_resultat.config(text="Résultat : " + resultat)
+
+fenetre = tk.Tk()
+fenetre.title("Convertisseur de base")
+
+base_depart_var = tk.StringVar(fenetre)
+base_arrivee_var = tk.StringVar(fenetre)
+
+label_valeur = tk.Label(fenetre, text="Valeur à convertir:")
+label_valeur.pack()
+
+entree_valeur = tk.Entry(fenetre)
+entree_valeur.pack()
+
+label_base_depart = tk.Label(fenetre, text="Base de départ:")
+label_base_depart.pack()
+
+options_base = ["Binaire", "Décimal", "Hexadécimal"]
+menu_base_depart = tk.OptionMenu(fenetre, base_depart_var, *options_base)
+base_depart_var.set(options_base[1])
+menu_base_depart.pack()
+
+label_base_arrivee = tk.Label(fenetre, text="Base d'arrivée:")
+label_base_arrivee.pack()
+
+menu_base_arrivee = tk.OptionMenu(fenetre, base_arrivee_var, *options_base)
+base_arrivee_var.set(options_base[0])
+menu_base_arrivee.pack()
+
+button_convertir = tk.Button(fenetre, text="Convertir", command=convertir_base)
+button_convertir.pack()
+
+etiquette_resultat = tk.Label(fenetre, text="Résultat : ")
+etiquette_resultat.pack()
 
 fenetre.mainloop()
