@@ -1,4 +1,3 @@
-import tkinter as tk
 
 def convertir_binaire_decimal(binaire):
     decimal = 0
@@ -107,14 +106,14 @@ label_base_depart.pack()
 
 options_base = ["Binaire", "Décimal", "Hexadécimal"]
 menu_base_depart = tk.OptionMenu(fenetre, base_depart_var, *options_base)
-base_depart_var.set(options_base[1])  # Valeur par défaut
+base_depart_var.set(options_base[1])
 menu_base_depart.pack()
 
 label_base_arrivee = tk.Label(fenetre, text="Base d'arrivée:")
 label_base_arrivee.pack()
 
 menu_base_arrivee = tk.OptionMenu(fenetre, base_arrivee_var, *options_base)
-base_arrivee_var.set(options_base[0])  # Valeur par défaut
+base_arrivee_var.set(options_base[0])
 menu_base_arrivee.pack()
 
 button_convertir = tk.Button(fenetre, text="Convertir", command=convertir_base)
