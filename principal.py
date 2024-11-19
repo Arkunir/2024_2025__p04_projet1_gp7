@@ -1,4 +1,4 @@
-
+import tkinter as tk
 def convertir_binaire_decimal(binaire):
     decimal = 0
     for i, bit in enumerate(reversed(binaire)):
