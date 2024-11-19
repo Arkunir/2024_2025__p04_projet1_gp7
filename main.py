@@ -1,4 +1,5 @@
 import tkinter as tk
+
 def convertir_binaire_decimal(binaire):
     decimal = 0
     for i, bit in enumerate(reversed(binaire)):
@@ -53,6 +54,10 @@ def convertir_base():
     base_depart = base_depart_var.get()
     base_arrivee = base_arrivee_var.get()
 
+    if not valeur_entree:
+        etiquette_resultat.config(text="Erreur : veuillez entrer un nombre")
+        return
+
     if valeur_entree[0] == "-":
         signe = "-"
         valeur_entree = valeur_entree[1:]
@@ -85,7 +90,7 @@ def convertir_base():
     elif base_depart == "Hexadécimal" and base_arrivee == "Décimal":
         resultat = signe + str(convertir_hexadecimal_decimal(valeur_entree))
     else:
-        resultat = "Erreur : conversion non prise en charge"
+        resultat = (valeur_entree)
 
     etiquette_resultat.config(text="Résultat : " + resultat)
 
@@ -106,14 +111,14 @@ label_base_depart.pack()
 
 options_base = ["Binaire", "Décimal", "Hexadécimal"]
 menu_base_depart = tk.OptionMenu(fenetre, base_depart_var, *options_base)
-base_depart_var.set(options_base[1])
+base_depart_var.set(options_base[1])  # Par défaut, sélectionne Décimal
 menu_base_depart.pack()
 
 label_base_arrivee = tk.Label(fenetre, text="Base d'arrivée:")
 label_base_arrivee.pack()
 
 menu_base_arrivee = tk.OptionMenu(fenetre, base_arrivee_var, *options_base)
-base_arrivee_var.set(options_base[0])
+base_arrivee_var.set(options_base[0])  # Par défaut, sélectionne Binaire
 menu_base_arrivee.pack()
 
 button_convertir = tk.Button(fenetre, text="Convertir", command=convertir_base)
