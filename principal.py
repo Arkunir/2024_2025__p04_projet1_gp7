@@ -1,4 +1,3 @@
-import tkinter as tk
 
 def convertir_binaire_decimal(binaire):
     decimal = 0
